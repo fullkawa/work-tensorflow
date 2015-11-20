@@ -53,18 +53,12 @@ print
 # 
 
 def inference(ph_play, ph_check):
-  """
   with tf.name_scope('inference') as scope:
-    Wp = tf.Variable(tf.zeros([dsize, 1]), name="weight:play")
-    Wc = tf.Variable(tf.zeros([dsize, 1]), name="weight:check")
+    Wp = tf.Variable(tf.zeros([dsize, 1]), name='weight-play')
+    Wc = tf.Variable(tf.zeros([dsize, 1]), name='weight-check')
+    b = tf.Variable(tf.zeros([dsize]), name='bias')
     
-    y = tf.nn.softmax(tf.matmul(ph_play, Wp) + tf.matmul(ph_check, Wc))
-  """
-  Wp = tf.Variable(tf.zeros([dsize, 1]))
-  Wc = tf.Variable(tf.zeros([dsize, 1]))
-  b = tf.Variable(tf.zeros([dsize]))
-  
-  y = tf.nn.softmax(tf.matmul(ph_play, Wp) + tf.matmul(ph_check, Wc) + b)
+    y = tf.nn.softmax(tf.matmul(ph_play, Wp) + tf.matmul(ph_check, Wc) + b)
   return y
 
 def loss(output, ph_supervisor_labels):
