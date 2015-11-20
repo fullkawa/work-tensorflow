@@ -62,8 +62,9 @@ def inference(ph_play, ph_check):
   """
   Wp = tf.Variable(tf.zeros([dsize, 1]))
   Wc = tf.Variable(tf.zeros([dsize, 1]))
+  b = tf.Variable(tf.zeros([dsize]))
   
-  y = tf.nn.softmax(tf.matmul(ph_play, Wp) + tf.matmul(ph_check, Wc))
+  y = tf.nn.softmax(tf.matmul(ph_play, Wp) + tf.matmul(ph_check, Wc) + b)
   return y
 
 def loss(output, ph_supervisor_labels):
